@@ -2,7 +2,6 @@ package com.assignment.simplebanking.model;
 
 
 import com.assignment.simplebanking.type.TransactionType;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.*;
 import org.hibernate.annotations.Type;
 
@@ -17,7 +16,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity
 @Table(name = "transaction")
-public class Transaction{
+public abstract class Transaction{
 
   @Id
   @SequenceGenerator(name = "transaction_seq_generator", sequenceName = "transaction_seq")
@@ -42,11 +41,6 @@ public class Transaction{
   @Column(name = "approval_code")
   private UUID approvalCode;
 
-
- /* @PrePersist
-  public void onPrePersist() {
-    setDate(LocalDateTime.now());
-  }*/
 
   @Override public String toString(){
     return "Transaction{" + "date=" + date + ", amount=" + amount + ", type=" + type + ", approvalCode=" + approvalCode + '}';
