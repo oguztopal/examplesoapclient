@@ -56,9 +56,7 @@ public class AccountServiceImpl implements AccountService{
           }
 
           account.getTransactions().addAll(transactionSet);
-
           accountRepository.save(account);
-
           return createNewTransactionResponse(HttpStatus.OK,transactionSet.iterator().next().getApprovalCode());
         }else{
           throw new InsufficientBalanceException(ErrorCode.AMOUNT_NOT_BE_NEGATIVE_OR_ZERO,Constants.AMOUNT_NOT_BE_NEGATIVE_OR_ZERO);
